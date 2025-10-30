@@ -278,8 +278,7 @@ export default function Home() {
                 {
                   step: "2",
                   title: "質問を入力",
-                  description:
-                    "「〇〇の手順を教えて」など、普段の言葉で質問",
+                  description: "「〇〇の手順を教えて」など、普段の言葉で質問",
                   gradient: "from-indigo-600 to-purple-600",
                 },
                 {
