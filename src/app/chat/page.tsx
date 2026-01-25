@@ -31,7 +31,11 @@ export default function Chat() {
   async function sendMessage() {
     if (!canSend) return;
     const text = input.trim();
+    if (text.length === 0) return;
+
+    // 即座に入力欄をクリア
     setInput("");
+
     const localId = `${Date.now()}`;
     setMessages((prev) => [
       ...prev,
@@ -74,9 +78,11 @@ export default function Chat() {
   }
 
   function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
-      sendMessage();
+      if (canSend) {
+        sendMessage();
+      }
     }
   }
 
@@ -196,8 +202,8 @@ export default function Chat() {
                 <div
                   className={
                     m.role === "user"
-                      ? "px-5 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-3xl rounded-tr-md shadow-lg shadow-indigo-200 text-[15px] leading-relaxed font-medium"
-                      : "px-5 py-3.5 bg-white border border-slate-200 rounded-3xl rounded-tl-md shadow-sm text-slate-800 text-[15px] leading-relaxed"
+                      ? "px-5 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-3xl rounded-tr-md shadow-lg shadow-indigo-200 text-[15px] leading-relaxed font-medium whitespace-pre-wrap"
+                      : "px-5 py-3.5 bg-white border border-slate-200 rounded-3xl rounded-tl-md shadow-sm text-slate-800 text-[15px] leading-relaxed whitespace-pre-wrap"
                   }
                 >
                   {m.content}
