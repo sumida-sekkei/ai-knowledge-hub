@@ -151,7 +151,8 @@ export default function Chat() {
               {/* Suggested Questions */}
               <div className="grid gap-3 w-full max-w-lg">
                 {[
-                  "〇〇の業務手順を教えてください",
+                  "〇〇とは？",
+                  "⬜︎⬜︎の業務手順を教えてください",
                   "△△の設定方法を知りたいです",
                 ].map((suggestion, idx) => (
                   <button
